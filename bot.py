@@ -9,27 +9,23 @@ class aclinet(discord.Client):
     
     async def on_ready(self):
         await self.wait_until_ready()
+        await self.change_presence(activity=discord.Game(name="版權砲"))
         if not self.synced:
             await tree.sync()
             self.synced = True
-        print(f"We have logged in as {self.user}")
+        print(f"We have logged in as {self.user}") 
 
 
 client = aclinet()
 tree = app_commands.CommandTree(client)
-
 
 @tree.command(name = "sc", description = "您的贊助金額和訊息都會公開顯示,訊息請留在chat" )
 async def self(interaction: discord.Integration, money:int, foruser:str, chat:str=""):  
     channel = client.get_channel(interaction.channel.id)
     user = str(interaction.user).split('#')[0]
     cor = cod.fun.superchat(money)
-    embed = discord.Embed(title=f"${money}", description=f"謝謝{user}給{foruser}的Super chat", color=cor)
+    embed = discord.Embed(title=f"${money}\n──────────────────────\n{chat}", description=f"謝謝{user}給{foruser}的Super chat", color=cor)
     embed.set_author(name=f"{user}", icon_url='https://cdn.discordapp.com/attachments/1048644726577975296/1050296879495262259/84b82d07b293907113d9d4dafd29bfa170bbf9b6.png')
-    if(chat == ""):
-        chat = ""
-    else:
-        embed.add_field(name=f"{chat}", value=".")
     await interaction.response.send_message(money, ephemeral=True)
     print(f"from {interaction.user}(<{interaction.user.id}>)say")
     try:
