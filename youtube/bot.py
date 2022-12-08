@@ -51,4 +51,4 @@ async def self(interaction: discord.Integration, txt:str=""):
     except:
         await channel.send("對方太棒了，你不可以倒讚")
 
-client.run("MTA0OTkzMjY5MTkxMjUyMzg1OA.GeNmis.symeolI3ol7qmB8Fq2Kvp5KOuZZj6qDcHuPUPs")
+client.run("TOKEN")
