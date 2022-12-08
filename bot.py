@@ -24,7 +24,10 @@ async def self(interaction: discord.Integration, money:int, foruser:str, chat:st
     channel = client.get_channel(interaction.channel.id)
     user = str(interaction.user).split('#')[0]
     cor = cod.fun.superchat(money)
-    embed = discord.Embed(title=f"${money}\n──────────────────────\n{chat}", description=f"謝謝{user}給{foruser}的Super chat", color=cor)
+    if(chat == ""):
+        embed = discord.Embed(title=f"${money}{chat}", description=f"謝謝{user}給{foruser}的Super chat", color=cor)
+    else:
+        embed = discord.Embed(title=f"${money}\n─────────────────\n{chat}", description=f"謝謝{user}給{foruser}的Super chat", color=cor)
     embed.set_author(name=f"{user}", icon_url='https://cdn.discordapp.com/attachments/1048644726577975296/1050296879495262259/84b82d07b293907113d9d4dafd29bfa170bbf9b6.png')
     await interaction.response.send_message(money, ephemeral=True)
     print(f"from {interaction.user}(<{interaction.user.id}>)say")
@@ -39,7 +42,7 @@ async def self(interaction: discord.Integration, txt:str=""):
     user = str(interaction.user).split('#')[0]
     embed = discord.Embed(title="瘋狂倒讚", description=f"{txt}")
     embed.set_author(name=f"{user}", icon_url='https://cdn.discordapp.com/attachments/1048644726577975296/1050296879495262259/84b82d07b293907113d9d4dafd29bfa170bbf9b6.png')
-    embed.set_thumbnail(url='https://cdn.discordapp.com/attachments/1048644726577975296/1050307386537156658/maxresdefault.jpg')
+    embed.set_thumbnail(url='https://media.discordapp.net/attachments/1023940775211454524/1037305951994249287/2.gif')
     await interaction.response.send_message("倒讚", ephemeral=True)
     print(f"from {interaction.user}(<{interaction.user.id}>)say")
     try:
